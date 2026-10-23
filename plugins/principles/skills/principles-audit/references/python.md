@@ -38,7 +38,7 @@ grep -rnE '\._[a-z][a-z_]*\(' tests/
 ## Flat code
 
 ```bash
-python3 ~/.claude/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES
 ```
 
 ## Measure first

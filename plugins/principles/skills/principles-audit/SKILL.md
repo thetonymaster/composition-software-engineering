@@ -109,7 +109,7 @@ must list anything skipped — a check that did not run is not a pass.
 When dispatching review or implementation to a subagent, include in its
 prompt: the scope (files or `git diff` range), the instruction to load the
 `principles-audit` skill (or read
-`~/.claude/skills/principles-audit/SKILL.md`), the mode (follow or audit),
+`${CLAUDE_PLUGIN_ROOT}/skills/principles-audit/SKILL.md`), the mode (follow or audit),
 and that it must return the report format above. Do not include a suspected
 conclusion; an auditor handed a hypothesis tends to confirm it.
 

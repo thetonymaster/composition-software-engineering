@@ -42,7 +42,7 @@ grep -rn 'async: false' test/
 ## Flat code
 
 ```bash
-python3 ~/.claude/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES
 grep -nE '^\s*if .* do$' $FILES     # if-inside-function candidates for clause heads
 ```
 

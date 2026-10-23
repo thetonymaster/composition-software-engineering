@@ -44,7 +44,7 @@ and reliance on "overriding".
 ## Flat code
 
 ```bash
-python3 ~/.claude/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES
 grep -nE '^\s*\} else \{' $FILES   # then check whether the if-branch returns
 ```
 

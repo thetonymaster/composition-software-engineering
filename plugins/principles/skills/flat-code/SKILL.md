@@ -73,7 +73,7 @@ No logic changed; every function fits on a screen and sits at depth ≤ 3.
 Run the bundled script (stdlib Python 3.10+, no install):
 
 ```bash
-python3 ~/.claude/skills/flat-code/scripts/nesting_depth.py --max 3 path/to/src
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/flat-code/scripts/nesting_depth.py --max 3 path/to/src
 ```
 
 It prints `file:line: function: depth N` for each function deeper than the
