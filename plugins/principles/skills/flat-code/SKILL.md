@@ -76,6 +76,10 @@ Run the bundled script (stdlib Python 3.10+, no install):
 python3 ${CLAUDE_PLUGIN_ROOT}/skills/flat-code/scripts/nesting_depth.py --max 3 path/to/src
 ```
 
+The language references write this path as
+`<plugin-root>/skills/flat-code/scripts/nesting_depth.py`; `<plugin-root>`
+is `${CLAUDE_PLUGIN_ROOT}`.
+
 It prints `file:line: function: depth N` for each function deeper than the
 limit and exits 1 if any are found. Python is measured from the `ast`
 (an `elif` chain counts as one level). Go, Elixir, TypeScript, Java, Rust

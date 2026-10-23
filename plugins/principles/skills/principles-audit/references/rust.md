@@ -70,7 +70,7 @@ on the same type; the fix is `fn resolve(self, ..) -> Graph`.
 ## Flat code
 
 ```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES
+python3 <plugin-root>/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES
 ```
 
 The script reads rustfmt output by indentation (match arms are not a level;

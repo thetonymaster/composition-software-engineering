@@ -28,7 +28,7 @@ Each skill has `SKILL.md` plus `references/<lang>.md` for `go`, `python`, `elixi
 
 ## Conventions
 
-- Refer to bundled files as `${CLAUDE_PLUGIN_ROOT}/skills/<skill>/...`, never `~/.claude/...` or an absolute path; `test_no_machine_local_paths` enforces it.
+- Refer to bundled files as `${CLAUDE_PLUGIN_ROOT}/skills/<skill>/...` in `SKILL.md` and as `<plugin-root>/skills/<skill>/...` everywhere else, never `~/.claude/...` or an absolute path. Claude Code expands the variable only in `SKILL.md` text; in reference files it stays literal and the shell has no such variable. `test_no_machine_local_paths` and `test_plugin_root_variable_only_in_skill_md` enforce it.
 - Adding a language: add `references/<lang>.md` to all five skills, list each in its `SKILL.md`, add the language to `LANGUAGES` in `tests/test_skills.py`, update the skill `description` fields, the plugin and marketplace descriptions, and the README verification table. Add a `Syntax` for it to `nesting_depth.py` with a fixture test, and check it against an exact parser or a real formatted corpus before claiming coverage.
 - Reference files mirror the existing ones: same section headings, imperative voice, Avoid/Prefer pairs. State only what was checked; say in the README table what was run and what was not.
 - Test audit `grep` commands with `/usr/bin/grep -E` (BSD) or GNU grep, not a `grep` alias such as ugrep, which accepts patterns the others silently fail to match.

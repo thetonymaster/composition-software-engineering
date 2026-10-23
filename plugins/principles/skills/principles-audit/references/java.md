@@ -86,7 +86,7 @@ the mutator has not run.
 /usr/bin/grep -nE '\.isPresent\(\)|Optional<[^>]+>[[:space:]]+[a-z][A-Za-z0-9]*[[:space:]]*[,)]' $FILES
 ```
 
-`python3 ${CLAUDE_PLUGIN_ROOT}/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES`
+`python3 <plugin-root>/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES`
 counts every block (loops, `try`, block lambdas) as the skill does; against
 javac's AST on gson it matched 59 of 60 methods. Checkstyle
 `NestedIfDepth`/`NestedForDepth` and PMD `CognitiveComplexity` are the

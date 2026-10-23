@@ -61,7 +61,7 @@ npx eslint --rule '{"max-depth":["error",2]}' $FILES
 /usr/bin/grep -nE '\.forEach\(async' $FILES          # unawaited callbacks, extra level
 ```
 
-`python3 ${CLAUDE_PLUGIN_ROOT}/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES`
+`python3 <plugin-root>/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES`
 gives the skill's own count (block callbacks are a level; ESLint
 `max-depth` resets at each function). Against the TypeScript compiler's AST
 it found 87 of 90 over-nested functions with 1 false positive; it misses a

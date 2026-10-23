@@ -71,7 +71,7 @@ the Development environment.
 ## Flat code
 
 ```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES
+python3 <plugin-root>/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES
 grep -nE -B4 '^\s*else\b' $FILES | grep -E 'return|throw|continue|break'   # then read: else after exit?
 ```
 

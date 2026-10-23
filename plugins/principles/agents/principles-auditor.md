@@ -21,8 +21,8 @@ report. You report; you do not fix.
 
 ## Procedure
 
-1. Load the `principles-audit` skill with the Skill tool. If it is not
-   available, read `${CLAUDE_PLUGIN_ROOT}/skills/principles-audit/SKILL.md`.
+1. Load the `principles-audit` skill with the Skill tool. If it cannot be
+   loaded, stop and return that error; do not audit from memory.
    Follow its audit procedure and report format exactly; load a principle's
    own skill (`composition`, `dependency-injection`, `flat-code`,
    `measure-first`) only when a finding needs its depth.

@@ -82,6 +82,21 @@ class SkillsTest(unittest.TestCase):
                 self.assertTrue((skill / ref).is_file(), f"{ref} missing")
                 self.assertTrue(f"`{ref}`" in index, f"{ref} not listed in SKILL.md")
 
+    def test_references_cover_exactly_the_supported_languages(self):
+        for skill in SKILLS:
+            with self.subTest(skill=skill.name):
+                found = {p.stem for p in (skill / "references").glob("*.md")}
+                self.assertEqual(found, set(LANGUAGES), "add the language to LANGUAGES or remove the file")
+
+    def test_plugin_root_variable_only_in_skill_md(self):
+        # Claude Code expands ${CLAUDE_PLUGIN_ROOT} in SKILL.md text only; elsewhere
+        # it stays literal and the shell has no such variable. Use <plugin-root>.
+        for path, lineno, line in plugin_text_lines():
+            if path.name == "SKILL.md":
+                continue
+            with self.subTest(file=str(path.relative_to(ROOT)), line=lineno):
+                self.assertNotIn("${CLAUDE_PLUGIN_ROOT}", line)
+
     def test_indexed_files_exist(self):
         for skill, ref in indexed_files():
             with self.subTest(skill=skill.name, ref=ref):

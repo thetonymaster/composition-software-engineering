@@ -1,6 +1,6 @@
 {
   "name": "principles",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Composition over inheritance, dependency injection, flat code, measure-first performance and a principles audit, with Go, Python, Elixir, TypeScript, Java, Rust and C# references.",
   "author": {
     "name": "Antonio Cabrera"

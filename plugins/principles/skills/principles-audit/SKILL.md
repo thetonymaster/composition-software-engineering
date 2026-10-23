@@ -36,6 +36,8 @@ Stay read-only — report findings; do not fix them unless asked.
 2. **Mechanical pass.** Run the detection commands for each language from the
    references (linters the project already uses first, then greps and
    `flat-code/scripts/nesting_depth.py`). These produce *leads*, not findings.
+   The references write the script's path as `<plugin-root>/skills/...`;
+   `<plugin-root>` is `${CLAUDE_PLUGIN_ROOT}`.
    Run them in bash (`bash -c '...'`): they rely on an unquoted `$FILES`
    splitting into one argument per file. zsh does not split it, so each tool
    receives a single nonexistent path, and some report a pass anyway (ruff

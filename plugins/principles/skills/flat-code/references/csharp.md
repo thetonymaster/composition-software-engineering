@@ -153,7 +153,7 @@ IDE rules run on the command line only with
 (Allman or K&R braces; lambdas, including Allman ones, count as a level):
 
 ```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/skills/flat-code/scripts/nesting_depth.py --max 3 src/
+python3 <plugin-root>/skills/flat-code/scripts/nesting_depth.py --max 3 src/
 ```
 
 It was spot-checked by hand on Polly, not against a parser; read each hit
