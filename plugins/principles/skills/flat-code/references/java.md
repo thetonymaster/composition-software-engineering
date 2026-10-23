@@ -150,5 +150,6 @@ at their defaults; `CognitiveComplexity`, which weights all nesting, scores it
 indentation to catch it. No Checkstyle or PMD rule flags
 `else` after `return`; grep for it (`principles-audit/references/java.md`).
 
-`scripts/nesting_depth.py` does not read `.java` files: it exits 2 with
-"unsupported file type". Use the linters above for Java.
+`scripts/nesting_depth.py` reads `.java` files and counts every block —
+loops, `try`, `synchronized`, block lambdas — which the if-only rules above
+do not. Methods of an anonymous class count inside the enclosing method.

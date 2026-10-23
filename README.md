@@ -14,8 +14,10 @@ that steer how Claude designs, refactors and reviews code.
 Every skill has references for **Go, Python, Elixir, TypeScript, Java, Rust
 and C#** (`references/<language>.md`), loaded only when the code under review
 is in that language. `flat-code` ships `scripts/nesting_depth.py`, which
-measures nesting in `.py`, `.go`, `.ex` and `.exs` files and exits 2 on any
-other file type.
+measures nesting in all seven (Python exactly from the `ast`, the rest by an
+indentation heuristic) and exits 2 on any other file type. Against exact
+parsers the heuristic found 87/90 over-nested TypeScript functions and 59/60
+Java methods; Rust and C# were spot-checked by hand.
 
 ## Install
 

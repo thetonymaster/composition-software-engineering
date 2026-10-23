@@ -70,12 +70,8 @@ the Development environment.
 
 ## Flat code
 
-`flat-code/scripts/nesting_depth.py` does not read `.cs`. Use the
-indentation heuristic from `flat-code/references/csharp.md` (file-scoped
-namespaces; use `{20,}` for block-scoped):
-
 ```bash
-grep -nE '^ {16,}(if|for|foreach|while|do|switch|try|lock)\b' $FILES
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES
 grep -nE -B4 '^\s*else\b' $FILES | grep -E 'return|throw|continue|break'   # then read: else after exit?
 ```
 

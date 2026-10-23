@@ -69,9 +69,14 @@ on the same type; the fix is `fn resolve(self, ..) -> Graph`.
 
 ## Flat code
 
-`flat-code`'s `nesting_depth.py` does not read `.rs` files. Use clippy with a
-temporary threshold (`CLIPPY_CONF_DIR` replaces the project's own
-`clippy.toml` for this run):
+```bash
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/flat-code/scripts/nesting_depth.py --max 3 $FILES
+```
+
+The script reads rustfmt output by indentation (match arms are not a level;
+closures and `let ... else` are). For a compiler-backed second opinion, run
+clippy with a temporary threshold (`CLIPPY_CONF_DIR` replaces the project's
+own `clippy.toml` for this run):
 
 ```bash
 mkdir -p /tmp/clippy-nesting
@@ -80,10 +85,9 @@ CLIPPY_CONF_DIR=/tmp/clippy-nesting cargo clippy --all-targets -- -W clippy::exc
 ```
 
 `excessive_nesting` counts `mod`, `impl` and `fn` blocks, so its numbers run
-higher than the skill's depth. For a faster lead on rustfmt output:
+higher than the skill's depth. Else after an exit:
 
 ```bash
-grep -nE '^ {16,}[^ ]' $FILES   # depth >= 4 in a free fn, >= 3 in an impl method
 grep -nE '^\s*\} else \{' $FILES  # then check whether the if-branch returns
 ```
 

@@ -1,6 +1,6 @@
 ---
 name: flat-code
-description: This skill should be used when writing or reviewing a function with deep nesting (if inside for inside if), long if/else chains, an else after a return, a loop body doing several jobs, or when the user asks to "flatten this", "de-nest", "reduce nesting", "use guard clauses", "early return", "this function is too long/complex", or "refactor this loop". Covers the depth-3 limit, inversion (guard clauses), extraction, and per-language idioms for Go, Python, Elixir, TypeScript, Java, Rust and C#, with a script that finds over-nested functions in Go, Python and Elixir.
+description: This skill should be used when writing or reviewing a function with deep nesting (if inside for inside if), long if/else chains, an else after a return, a loop body doing several jobs, or when the user asks to "flatten this", "de-nest", "reduce nesting", "use guard clauses", "early return", "this function is too long/complex", or "refactor this loop". Covers the depth-3 limit, inversion (guard clauses), extraction, and per-language idioms for Go, Python, Elixir, TypeScript, Java, Rust and C#, with a script that finds over-nested functions in all of them.
 ---
 
 # Flat code
@@ -78,10 +78,12 @@ python3 ${CLAUDE_PLUGIN_ROOT}/skills/flat-code/scripts/nesting_depth.py --max 3 
 
 It prints `file:line: function: depth N` for each function deeper than the
 limit and exits 1 if any are found. Python is measured from the `ast`
-(an `elif` chain counts as one level);
-Go and Elixir use an indentation heuristic over gofmt / mix format output —
-read the function before reporting it. Prefer the language's linter when the
-project already runs one (see references).
+(an `elif` chain counts as one level). Go, Elixir, TypeScript, Java, Rust
+and C# use an indentation heuristic over formatter output (gofmt, mix
+format, prettier, google-java-format, rustfmt, dotnet format) — read the
+function before reporting it. Block closures count as a level; an else-if
+chain, `case` clauses and Rust match arms do not. Prefer the language's
+linter when the project already runs one (see references).
 
 ## Checklist
 
@@ -111,8 +113,7 @@ project already runs one (see references).
 ## Scripts
 
 - **`scripts/nesting_depth.py`** — report functions past a depth limit in
-  `.py`, `.go`, `.ex`, `.exs` files. Any other file type, or a directory with
-  none of these, exits 2; for those languages use the linter rules in their
-  reference file.
+  `.py`, `.go`, `.ex`, `.exs`, `.ts`, `.tsx`, `.java`, `.rs` and `.cs` files.
+  Any other file type, or a directory with none of these, exits 2.
 
 Related: `principles-audit` runs this check alongside the others.

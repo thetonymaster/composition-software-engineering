@@ -114,7 +114,9 @@ Count the function body as 1; the surrounding `impl` and `mod` do not count.
 With rustfmt's 4-space indent, depth 4 starts at 16 spaces in a free
 function and 20 in an `impl` method. Method chains and struct literals also
 indent; read the function before reporting it. `scripts/nesting_depth.py`
-does not read `.rs` files; use clippy.
+applies this count to `.rs` files (match arms are not a level; closures,
+`async` blocks and `let ... else` are); clippy below gives a compiler-backed
+second opinion.
 
 ## Linters (clippy)
 

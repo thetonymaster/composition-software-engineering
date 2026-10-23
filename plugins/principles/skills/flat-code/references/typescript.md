@@ -138,5 +138,6 @@ checked with `satisfies Record<Download["state"], ...>` does the same job.
 | `@typescript-eslint/prefer-optional-chain` | `a && a.b && a.b.c` (needs type info) | — |
 
 `tsc` flags `noImplicitReturns` and `noFallthroughCasesInSwitch` catch the
-branch that forgot to `return` or `break`. `scripts/nesting_depth.py` does not
-read `.ts`; use `max-depth` instead.
+branch that forgot to `return` or `break`. `scripts/nesting_depth.py` reads
+`.ts`/`.tsx` and counts block callbacks (`=> {`) as a level, which
+`max-depth` does not; expression arrows (`x => x + 1`) do not count.

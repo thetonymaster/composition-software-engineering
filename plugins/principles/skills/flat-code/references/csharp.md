@@ -149,13 +149,12 @@ IDE rules run on the command line only with
 `warning` or `error` in `.editorconfig`
 (`dotnet_diagnostic.IDE0063.severity = warning`).
 
-`scripts/nesting_depth.py` does not read `.cs` files. For a lead list over
-`dotnet format` output (4-space indent, file-scoped namespace, method body
-at 8 spaces), a control statement at 16+ spaces opens depth 4:
+`scripts/nesting_depth.py` reads `.cs` files with an indentation heuristic
+(Allman or K&R braces; lambdas, including Allman ones, count as a level):
 
 ```bash
-grep -rnE '^ {16,}(if|for|foreach|while|do|switch|try|lock)\b' --include='*.cs' src/
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/flat-code/scripts/nesting_depth.py --max 3 src/
 ```
 
-With block-scoped namespaces use `{20,}`. Lambdas and local functions are
-not counted; read each hit before reporting it.
+It was spot-checked by hand on Polly, not against a parser; read each hit
+before reporting it. Property accessors (`get { }`) are not measured.
