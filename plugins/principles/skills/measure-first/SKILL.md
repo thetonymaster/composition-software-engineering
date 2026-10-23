@@ -85,5 +85,13 @@ Follow in order; do not skip to step 5.
   `scalene`, `memray`.
 - **`references/elixir.md`** — Benchee, `mix profile.tprof` / `eprof` /
   `fprof`, `:observer`, `recon`, flame graphs, BEAM-specific traps.
+- **`references/typescript.md`** — mitata/tinybench, V8 traps (dead code,
+  monomorphic benchmarks, deopts), `--cpu-prof`/`--prof`, 0x, clinic.
+- **`references/java.md`** — why `nanoTime` loops lie, JMH (`@Param`,
+  `Blackhole`, `-prof gc`), JFR/`jcmd`, async-profiler, VisualVM.
+- **`references/rust.md`** — release vs debug, criterion with
+  `std::hint::black_box` and baselines, cargo-flamegraph, samply, dhat.
+- **`references/csharp.md`** — BenchmarkDotNet (`[MemoryDiagnoser]`, Release
+  builds), dotnet-counters, dotnet-trace, PerfView, tiered compilation/PGO.
 
 Related: `principles-audit`.

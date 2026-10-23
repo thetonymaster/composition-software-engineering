@@ -99,10 +99,19 @@ project already runs one (see references).
   `match`, ruff rules (`RET505`, `SIM102`, `PLR1702`, `C901`).
 - **`references/elixir.md`** — multi-clause functions and guards, `with`,
   pipelines, Credo `Refactor.Nesting` (default max 2).
+- **`references/typescript.md`** — guard clauses with narrowing, `?.`/`??`,
+  discriminated unions with `assertNever`, ESLint `max-depth`/`no-else-return`.
+- **`references/java.md`** — guard clauses, chaining `Optional`, switch
+  expressions/patterns, streams vs loops, Checkstyle/PMD nesting rules.
+- **`references/rust.md`** — `?`, `let ... else`, `continue` guards, iterator
+  chains, `match` vs nested `if let`, clippy `excessive_nesting`.
+- **`references/csharp.md`** — `ThrowIfNull` guards, `using` declarations,
+  switch expressions and property patterns, CA1502/IDE analyzers.
 
 ## Scripts
 
 - **`scripts/nesting_depth.py`** — report functions past a depth limit in
-  `.py`, `.go`, `.ex`, `.exs` files.
+  `.py`, `.go`, `.ex`, `.exs` files. Other extensions are skipped silently
+  (exit 0, no output); for those, use the linter rules in their reference file.
 
 Related: `principles-audit` runs this check alongside the others.

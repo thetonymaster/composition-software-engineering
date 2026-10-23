@@ -141,7 +141,9 @@ everything else private/final.
 
 Composition looks different in each language — Go has no inheritance but has
 embedding traps; Python has ABCs, Protocols and mixins; Elixir has behaviours,
-protocols and `use`. Load the one that matches the code under review:
+protocols and `use`; Rust has traits and no inheritance at all; Java, C# and
+TypeScript have class inheritance as the default trap. Load the one that
+matches the code under review:
 
 - **`references/go.md`** — consumer-side interfaces, embedding pitfalls,
   `fs.FS`/`io.Writer` seams, ordering as types, package state.
@@ -149,6 +151,18 @@ protocols and `use`. Load the one that matches the code under review:
   injecting IO, module-level singletons.
 - **`references/elixir.md`** — behaviours vs protocols, `use` as hidden
   inheritance, processes as state, Application env as a global.
+- **`references/typescript.md`** — structural interfaces at the consumer,
+  `extends`/`protected`/mixin/decorator traps, IO seams, module singletons,
+  ordering as a type with `#private`.
+- **`references/java.md`** — fragile base class, consumer interface plus
+  delegation, default-method and abstract-class traps, sealed interfaces +
+  records, static state.
+- **`references/rust.md`** — consumer-side traits and the orphan rule,
+  generics vs `dyn Trait`, `Deref` as fake inheritance, ordering by consuming
+  `self`, `static`/`LazyLock` globals.
+- **`references/csharp.md`** — consumer-owned interfaces, inheritance traps
+  (`sealed`, virtual calls in constructors, `new` hiding), default interface
+  members, `TimeProvider`/`IFileProvider` seams, static state.
 
 Related skills: `dependency-injection` (how a seam gets its implementation),
 `flat-code`, `measure-first`, and `principles-audit` to review a change against

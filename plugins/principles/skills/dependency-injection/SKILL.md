@@ -112,5 +112,15 @@ outside the process's own code, and is shared by several generators).
   smell.
 - **`references/elixir.md`** — behaviours + Mox, adapter via options vs
   Application env, `Req.Test`, compile-time vs runtime config.
+- **`references/typescript.md`** — constructor params typed by interface,
+  composition root with an exhaustive `never` factory, fakes vs `vi.fn`, why
+  `vi.mock` is a smell.
+- **`references/java.md`** — constructor injection into final fields, `Clock`,
+  wiring in `main` vs Spring/Guice, field-injection pitfalls, fakes vs Mockito.
+- **`references/rust.md`** — generic params vs `Box`/`Arc<dyn Trait>`, `new`
+  constructors, wiring in `main`, hand-written fakes vs `mockall`.
+- **`references/csharp.md`** — constructor injection, composition root in
+  `Program.cs`, lifetimes and captive dependencies, keyed services,
+  `FakeTimeProvider`, the service-locator smell.
 
 Related: `composition` (whether the seam should exist), `principles-audit`.

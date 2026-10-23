@@ -118,3 +118,11 @@ conclusion; an auditor handed a hypothesis tends to confirm it.
 - **`references/go.md`** — detection commands and linters for Go.
 - **`references/python.md`** — detection commands and linters for Python.
 - **`references/elixir.md`** — detection commands and Credo/xref for Elixir.
+- **`references/typescript.md`** — detection commands, tsc flags and ESLint
+  rules for TypeScript.
+- **`references/java.md`** — detection commands and Checkstyle/PMD/Error
+  Prone/ArchUnit for Java.
+- **`references/rust.md`** — detection commands and clippy lints/config for
+  Rust.
+- **`references/csharp.md`** — detection commands and Roslyn analyzers
+  (.editorconfig, `CodeMetricsConfig.txt`) for C#.
