@@ -1,7 +1,8 @@
 # composition-software-engineering
 
 A Claude Code plugin marketplace with one plugin, `principles`: five skills
-that steer how Claude designs, refactors and reviews code.
+that steer how Claude designs, refactors and reviews code, and one agent that
+audits code against them.
 
 | Skill | Use it when |
 |---|---|
@@ -10,6 +11,10 @@ that steer how Claude designs, refactors and reviews code.
 | `flat-code` | a function nests past depth 3, chains `if`/`else`, or has an `else` after `return` |
 | `measure-first` | someone says "make it faster", "optimize" or "is X faster than Y", before trading readability for speed |
 | `principles-audit` | auditing a diff or module against the four principles above, or briefing a subagent to work under them |
+
+| Agent | Use it when |
+|---|---|
+| `principles-auditor` | you want a `principles-audit` report from a fresh context that did not write the code; it reads and runs checks, and does not edit |
 
 Every skill has references for **Go, Python, Elixir, TypeScript, Java, Rust
 and C#** (`references/<language>.md`), loaded only when the code under review
@@ -37,7 +42,9 @@ From a local clone:
 
 Skills are namespaced once installed: `principles:composition`,
 `principles:flat-code`, and so on. They trigger from their descriptions; you
-can also invoke one by name, e.g. `/principles:principles-audit`.
+can also invoke one by name, e.g. `/principles:principles-audit`. The agent
+is `principles:principles-auditor`; ask Claude to "run the principles-auditor
+agent on this branch", or pick it from `/agents`.
 
 ## How much of the reference material was executed
 

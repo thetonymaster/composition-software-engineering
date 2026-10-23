@@ -65,6 +65,17 @@ class SkillsTest(unittest.TestCase):
                 self.assertTrue(description, "description is empty")
                 self.assertLessEqual(len(description), 1024)
 
+    def test_agents_have_required_frontmatter(self):
+        agents = sorted((PLUGIN / "agents").glob("*.md"))
+        self.assertEqual([p.stem for p in agents], ["principles-auditor"])
+        for agent in agents:
+            with self.subTest(agent=agent.name):
+                fields = frontmatter(agent.read_text())
+                assert fields is not None, "agent has no --- frontmatter block"
+                self.assertEqual(fields.get("name"), agent.stem)
+                missing = [k for k in ("description", "model", "color") if not fields.get(k)]
+                self.assertEqual(missing, [], "empty or missing frontmatter keys")
+
     def test_every_language_reference_exists_and_is_indexed(self):
         for skill, ref, index in expected_references():
             with self.subTest(skill=skill.name, ref=ref):

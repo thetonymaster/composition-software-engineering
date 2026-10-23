@@ -20,6 +20,8 @@ The repo is a **plugin marketplace** (`.claude-plugin/marketplace.json`, name `c
 - `composition`, `dependency-injection`, `flat-code`, `measure-first` — one principle each.
 - `principles-audit` — runs the four as a review, in both directions (too little and too much structure).
 
+The plugin also has one agent, `agents/principles-auditor.md`. It runs `principles-audit` in a fresh, read-only context and returns its report. `tests/test_skills.py` checks its frontmatter.
+
 Each skill has `SKILL.md` plus `references/<lang>.md` for `go`, `python`, `elixir`, `typescript`, `java`, `rust`, `csharp`. `SKILL.md` lists every reference under "Language references"; `tests/test_skills.py` fails if one is missing or unlisted.
 
 `flat-code/scripts/nesting_depth.py` is stdlib-only Python 3.10+. It measures `.py` exactly (ast) and Go, Elixir, Java, C#, Rust and TypeScript by an indentation heuristic, and exits 2 on any other file type. Each heuristic language is a `Syntax` value registered in `MEASURERS`; adding one is data plus a test, not a new code path. Its tests are `tests/test_nesting_depth.py`, including one that runs the script on itself at depth 3.
