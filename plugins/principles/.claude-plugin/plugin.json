@@ -1,0 +1,18 @@
+{
+  "name": "principles",
+  "version": "0.1.0",
+  "description": "Composition over inheritance, dependency injection, flat code, measure-first performance and a principles audit, with Go, Python, Elixir, TypeScript, Java, Rust and C# references.",
+  "author": {
+    "name": "Antonio Cabrera"
+  },
+  "homepage": "https://github.com/thetonymaster/composition-software-engineering",
+  "repository": "https://github.com/thetonymaster/composition-software-engineering",
+  "license": "MIT",
+  "keywords": [
+    "composition",
+    "dependency-injection",
+    "refactoring",
+    "performance",
+    "code-review"
+  ]
+}

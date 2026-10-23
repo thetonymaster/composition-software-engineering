@@ -1,0 +1,14 @@
+{
+  "name": "composition-software-engineering",
+  "description": "Design-principle skills for Claude Code: composition, dependency injection, flat code, measure-first, and an audit that runs all four.",
+  "owner": {
+    "name": "Antonio Cabrera"
+  },
+  "plugins": [
+    {
+      "name": "principles",
+      "source": "./plugins/principles",
+      "description": "Composition over inheritance, dependency injection, flat code, measure-first performance and a principles audit, with Go, Python, Elixir, TypeScript, Java, Rust and C# references."
+    }
+  ]
+}
