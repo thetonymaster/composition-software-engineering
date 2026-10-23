@@ -270,6 +270,14 @@ class NestingDepthTest(unittest.TestCase):
         self.assertIn("findInNav: depth 4", res.stdout)
         self.assertIn("load: depth 4", res.stdout)
 
+    def test_runs_with_docstrings_stripped(self):
+        res = subprocess.run(
+            [sys.executable, "-OO", str(SCRIPT), self.write("deep.py", DEEP_PY)],
+            cwd=self.dir, capture_output=True, text=True,
+        )
+        # A traceback also exits 1, so check the finding was printed.
+        self.assertIn("deep: depth 5", res.stdout, res.stderr)
+
     def test_script_obeys_its_own_limit(self):
         res = run(str(SCRIPT), cwd=self.dir)
         self.assertEqual(res.returncode, 0, res.stdout)
@@ -278,7 +286,7 @@ class NestingDepthTest(unittest.TestCase):
         self.write("src/deep.py", DEEP_PY)
         self.write("src/A.kt", "class A {}\n")
         res = run("src", cwd=self.dir)
-        self.assertEqual(res.returncode, 1, res.stderr)
+        self.assertIn("deep: depth 5", res.stdout, res.stderr)
         self.assertNotIn("A.kt", res.stdout + res.stderr)
 
     def test_unsupported_file_exits_2(self):

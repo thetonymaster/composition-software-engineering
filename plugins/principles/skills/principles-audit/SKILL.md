@@ -1,6 +1,6 @@
 ---
 name: principles-audit
-description: This skill should be used when auditing a diff, branch or module specifically against design principles (composition, dependency injection, nesting, premature optimization), when briefing a subagent to implement or review work under those principles, or when the user asks to "audit this against our principles", "check composition / DI / nesting / premature optimization", "is this over-engineered", or "is this abstraction worth it". For a general bug/security review use code-review instead. Runs four checks — composition, dependency injection, flat code, measure-first — in both directions (too little and too much structure), with evidence-backed findings, for Go, Python, Elixir, TypeScript, Java, Rust and C#.
+description: This skill should be used when auditing a diff, branch or module specifically against design principles (composition, dependency injection, nesting, premature optimization), when briefing a subagent to implement or review work under those principles, or when the user asks to "audit this against our principles", "check composition / DI / nesting / premature optimization", "is this over-engineered", or "is this abstraction worth it". Not for a general bug or security review. Runs four checks — composition, dependency injection, flat code, measure-first — in both directions (too little and too much structure), with evidence-backed findings, for Go, Python, Elixir, TypeScript, Java, Rust and C#.
 ---
 
 # Principles audit
@@ -36,6 +36,10 @@ Stay read-only — report findings; do not fix them unless asked.
 2. **Mechanical pass.** Run the detection commands for each language from the
    references (linters the project already uses first, then greps and
    `flat-code/scripts/nesting_depth.py`). These produce *leads*, not findings.
+   Run them in bash (`bash -c '...'`): they rely on an unquoted `$FILES`
+   splitting into one argument per file. zsh does not split it, so each tool
+   receives a single nonexistent path, and some report a pass anyway (ruff
+   prints "All checks passed!"). A tool that ran on nothing is not a pass.
 3. **Judgement pass.** For each lead and each new abstraction in the diff:
    - Composition / DI: name the second implementation and where it lives. If
      none exists now or in a committed plan, and the dependency is not outside

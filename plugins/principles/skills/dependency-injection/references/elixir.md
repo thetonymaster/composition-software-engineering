@@ -1,8 +1,9 @@
 # Dependency injection in Elixir
 
 Modules are values. Passing a module (or a function) as an argument is the
-injection mechanism; a behaviour is the contract. For Mox/Req.Test setup
-details and async test pitfalls, the `elixir-best-practices` skill goes deeper.
+injection mechanism; a behaviour is the contract. For Mox and `Req.Test`
+setup details and async test pitfalls, see their HexDocs (`Mox` and
+`Req.Test` module docs).
 
 ## Behaviour + adapter
 

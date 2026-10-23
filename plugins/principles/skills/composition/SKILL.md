@@ -5,8 +5,10 @@ description: Use when reaching for an abstraction, designing how components fit 
 
 # Composition
 
-The summary lives in CLAUDE.md. This is the reasoning, the tests to apply, and
-worked examples in both directions.
+Build behaviour by combining small parts that each do one job, keep IO at the
+outer edge, and add an abstraction only when a second implementation exists.
+This skill gives the reasoning, the tests to apply, and worked examples of
+both failure directions: too little structure and too much.
 
 ## The one test that decides most cases
 

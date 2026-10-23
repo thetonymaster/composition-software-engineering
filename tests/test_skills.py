@@ -25,6 +25,28 @@ def frontmatter(text):
     return fields
 
 
+def expected_references():
+    """(skill dir, reference path, SKILL.md text) for every skill and language."""
+    for skill in SKILLS:
+        index = (skill / "SKILL.md").read_text()
+        yield from ((skill, f"references/{lang}.md", index) for lang in LANGUAGES)
+
+
+def indexed_files():
+    """(skill dir, path) for every references/ or scripts/ path a SKILL.md lists."""
+    for skill in SKILLS:
+        index = (skill / "SKILL.md").read_text()
+        refs = set(re.findall(r"`((?:references|scripts)/[\w./-]+)`", index))
+        yield from ((skill, ref) for ref in sorted(refs))
+
+
+def plugin_text_lines():
+    """(path, line number, line) for every .md, .py and .json file in the plugin."""
+    files = (p for p in sorted(PLUGIN.rglob("*")) if p.is_file() and p.suffix in (".md", ".py", ".json"))
+    for path in files:
+        yield from ((path, n, line) for n, line in enumerate(path.read_text().splitlines(), 1))
+
+
 class SkillsTest(unittest.TestCase):
     def test_expected_skills_exist(self):
         names = [p.name for p in SKILLS]
@@ -37,35 +59,27 @@ class SkillsTest(unittest.TestCase):
         for skill in SKILLS:
             with self.subTest(skill=skill.name):
                 fields = frontmatter((skill / "SKILL.md").read_text())
-                self.assertIsNotNone(fields, "SKILL.md has no --- frontmatter block")
+                assert fields is not None, "SKILL.md has no --- frontmatter block"
                 self.assertEqual(fields.get("name"), skill.name)
                 description = fields.get("description", "")
                 self.assertTrue(description, "description is empty")
                 self.assertLessEqual(len(description), 1024)
 
     def test_every_language_reference_exists_and_is_indexed(self):
-        for skill in SKILLS:
-            index = (skill / "SKILL.md").read_text()
-            for lang in LANGUAGES:
-                ref = f"references/{lang}.md"
-                with self.subTest(skill=skill.name, ref=ref):
-                    self.assertTrue((skill / ref).is_file(), f"{ref} missing")
-                    self.assertTrue(f"`{ref}`" in index, f"{ref} not listed in SKILL.md")
+        for skill, ref, index in expected_references():
+            with self.subTest(skill=skill.name, ref=ref):
+                self.assertTrue((skill / ref).is_file(), f"{ref} missing")
+                self.assertTrue(f"`{ref}`" in index, f"{ref} not listed in SKILL.md")
 
     def test_indexed_files_exist(self):
-        for skill in SKILLS:
-            index = (skill / "SKILL.md").read_text()
-            for ref in set(re.findall(r"`((?:references|scripts)/[\w./-]+)`", index)):
-                with self.subTest(skill=skill.name, ref=ref):
-                    self.assertTrue((skill / ref).is_file(), f"SKILL.md lists {ref}, which does not exist")
+        for skill, ref in indexed_files():
+            with self.subTest(skill=skill.name, ref=ref):
+                self.assertTrue((skill / ref).is_file(), f"SKILL.md lists {ref}, which does not exist")
 
     def test_no_machine_local_paths(self):
-        for path in sorted(PLUGIN.rglob("*")):
-            if not path.is_file() or path.suffix not in (".md", ".py", ".json"):
-                continue
-            for lineno, line in enumerate(path.read_text().splitlines(), 1):
-                with self.subTest(file=str(path.relative_to(ROOT)), line=lineno):
-                    self.assertIsNone(LOCAL_PATH.search(line), line)
+        for path, lineno, line in plugin_text_lines():
+            with self.subTest(file=str(path.relative_to(ROOT)), line=lineno):
+                self.assertIsNone(LOCAL_PATH.search(line), line)
 
     def test_plugin_and_marketplace_agree(self):
         plugin = json.loads((PLUGIN / ".claude-plugin/plugin.json").read_text())

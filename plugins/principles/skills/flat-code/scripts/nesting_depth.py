@@ -291,7 +291,8 @@ def expand(raw):
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    # Not __doc__: python -OO strips docstrings and __doc__ becomes None.
+    parser = argparse.ArgumentParser(description="Report functions whose block nesting exceeds a limit.")
     parser.add_argument("--max", type=int, default=3, help="deepest allowed level (default 3)")
     parser.add_argument("paths", nargs="+")
     args = parser.parse_args()
