@@ -1,6 +1,6 @@
 ---
 name: measure-first
-description: This skill should be used when performance comes up — the user says "make this faster", "optimize", "this is slow", "is X faster than Y", "should I use a set/map here", "profile this", "benchmark this", or a review comment demands a micro-optimization — and before trading readability for speed. Covers the velocity/adaptability/performance trade-off, the measure-first workflow, and profiling and benchmarking tools for Go, Python and Elixir.
+description: This skill should be used when performance comes up — the user says "make this faster", "optimize", "this is slow", "is X faster than Y", "should I use a set/map here", "profile this", "benchmark this", or a review comment demands a micro-optimization — and before trading readability for speed. Covers the velocity/adaptability/performance trade-off, the measure-first workflow, and profiling and benchmarking tools for Go, Python, Elixir, TypeScript, Java, Rust and C#.
 ---
 
 # Measure first

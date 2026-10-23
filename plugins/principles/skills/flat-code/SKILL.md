@@ -1,6 +1,6 @@
 ---
 name: flat-code
-description: This skill should be used when writing or reviewing a function with deep nesting (if inside for inside if), long if/else chains, an else after a return, a loop body doing several jobs, or when the user asks to "flatten this", "de-nest", "reduce nesting", "use guard clauses", "early return", "this function is too long/complex", or "refactor this loop". Covers the depth-3 limit, inversion (guard clauses), extraction, and per-language idioms for Go, Python and Elixir, with a script that finds over-nested functions.
+description: This skill should be used when writing or reviewing a function with deep nesting (if inside for inside if), long if/else chains, an else after a return, a loop body doing several jobs, or when the user asks to "flatten this", "de-nest", "reduce nesting", "use guard clauses", "early return", "this function is too long/complex", or "refactor this loop". Covers the depth-3 limit, inversion (guard clauses), extraction, and per-language idioms for Go, Python, Elixir, TypeScript, Java, Rust and C#, with a script that finds over-nested functions in Go, Python and Elixir.
 ---
 
 # Flat code

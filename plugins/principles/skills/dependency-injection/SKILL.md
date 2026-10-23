@@ -1,6 +1,6 @@
 ---
 name: dependency-injection
-description: This skill should be used when code hardcodes a dependency (a client constructed inline, a global, a direct call to disk/network/clock), when a test needs monkeypatching or mocking of private internals, when one function grows if/else branches per backend ("upload to S3, or SFTP, or WebDAV"), or when the user asks to "make this testable", "inject this", "add a fake", "swap the implementation", "add a factory", or "decouple this". Covers constructor injection, where to choose the implementation, fakes vs mocks, and when NOT to inject — in Go, Python and Elixir.
+description: This skill should be used when code hardcodes a dependency (a client constructed inline, a global, a direct call to disk/network/clock), when a test needs monkeypatching or mocking of private internals, when one function grows if/else branches per backend ("upload to S3, or SFTP, or WebDAV"), or when the user asks to "make this testable", "inject this", "add a fake", "swap the implementation", "add a factory", or "decouple this". Covers constructor injection, where to choose the implementation, fakes vs mocks, and when NOT to inject — in Go, Python, Elixir, TypeScript, Java, Rust and C#.
 ---
 
 # Dependency injection

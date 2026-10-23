@@ -1,6 +1,6 @@
 ---
 name: composition
-description: Use when reaching for an abstraction, designing how components fit together, or reviewing whether an existing abstraction earns its keep — and when reaching for inheritance, a base class, a mixin, Go struct embedding or an Elixir `use` macro. Covers IO at the edges, the second-implementation test, ordering as a compile error, composition over inheritance, and the symmetric risk of over-abstraction, with Go, Python and Elixir references.
+description: Use when reaching for an abstraction, designing how components fit together, or reviewing whether an existing abstraction earns its keep — and when reaching for inheritance, a base class, a mixin, class `extends`, Go struct embedding, Rust `Deref` or an Elixir `use` macro. Covers IO at the edges, the second-implementation test, ordering as a compile error, composition over inheritance, and the symmetric risk of over-abstraction, with Go, Python, Elixir, TypeScript, Java, Rust and C# references.
 ---
 
 # Composition
