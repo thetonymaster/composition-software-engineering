@@ -87,8 +87,7 @@ the mutator has not run.
 ```
 
 `flat-code/scripts/nesting_depth.py` reads only `.py`, `.go`, `.ex` and
-`.exs`; on Java files it reports nothing and exits 0. Do not record that as
-a pass. Use Checkstyle `NestedIfDepth`/`NestedForDepth` and PMD
+`.exs`; on Java files it exits 2 with "unsupported file type". Use Checkstyle `NestedIfDepth`/`NestedForDepth` and PMD
 `CognitiveComplexity`, then read the deepest methods; neither if-rule counts
 loops or `try`.
 

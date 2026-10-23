@@ -14,7 +14,8 @@ gofmt / mix format output. Treat Go and Elixir findings as leads to read,
 not verdicts.
 
 Exit status: 0 if nothing exceeds the limit, 1 if something does, 2 on
-usage errors.
+usage errors, including a file of another type or a directory with no
+supported files (nothing measured is not a pass).
 """
 
 import argparse
@@ -44,6 +45,7 @@ EX_CONTROL = re.compile(
 )
 EX_NAME = re.compile(r"(?:def|defp|defmacro|defmacrop)\s+(\w+[?!]?)")
 EX_CLAUSE = re.compile(r"^\s*(else|after|rescue|catch)\b")
+SUPPORTED = (".py", ".go", ".ex", ".exs")
 
 
 def is_elif(parent, child):
@@ -151,7 +153,17 @@ def main():
             print(f"nesting_depth: path {raw!r} does not exist", file=sys.stderr)
             return 2
         if p.is_dir():
-            files += sorted(f for ext in ("*.py", "*.go", "*.ex", "*.exs") for f in p.rglob(ext))
+            found_in_dir = sorted(f for ext in SUPPORTED for f in p.rglob("*" + ext))
+            if not found_in_dir:
+                print(f"nesting_depth: directory {raw!r} has no {', '.join(SUPPORTED)} files;"
+                      " nothing was measured", file=sys.stderr)
+                return 2
+            files += found_in_dir
+        elif p.suffix not in SUPPORTED:
+            print(f"nesting_depth: unsupported file type {p.suffix or '(none)'!r} for {raw!r};"
+                  f" supported: {', '.join(SUPPORTED)}. Use the language's linter instead",
+                  file=sys.stderr)
+            return 2
         else:
             files.append(p)
 

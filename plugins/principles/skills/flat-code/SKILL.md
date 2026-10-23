@@ -111,7 +111,8 @@ project already runs one (see references).
 ## Scripts
 
 - **`scripts/nesting_depth.py`** — report functions past a depth limit in
-  `.py`, `.go`, `.ex`, `.exs` files. Other extensions are skipped silently
-  (exit 0, no output); for those, use the linter rules in their reference file.
+  `.py`, `.go`, `.ex`, `.exs` files. Any other file type, or a directory with
+  none of these, exits 2; for those languages use the linter rules in their
+  reference file.
 
 Related: `principles-audit` runs this check alongside the others.
