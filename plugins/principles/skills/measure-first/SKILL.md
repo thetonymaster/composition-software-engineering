@@ -13,12 +13,13 @@ says the speed matters.
 Intuition about what is fast is unreliable:
 
 - `++i` vs `i++` in C++ — compiled with optimisation, identical assembly.
-- A set vs an array for "is this user logged in" — in the source video's
-  measurement the array won with few users (contiguous integers are
-  cache-friendly). In Go 1.27 on an M-series Mac, a 50-element `map[int]bool`
-  lookup measured 3.5 ns against 11.8 ns for a slice scan to element 42. The
-  answer depends on language, size and data layout; that is the point —
-  benchmark the case at hand instead of quoting either result.
+- A set vs an array for "is this user logged in" — the common intuition is
+  that a linear scan of a small array beats a hash set, because contiguous
+  integers are cache-friendly and need no hashing. In Go 1.27 on an M-series
+  Mac it lost: a 50-element `map[int]bool` lookup measured 3.5 ns against
+  11.8 ns for a slice scan to element 42. The answer depends on language,
+  size and data layout; that is the point — benchmark the case at hand
+  instead of quoting either result.
 - GTA V Online loading — a player profiled the binary without source and
   found startup dominated by processing one JSON file: `sscanf` re-scanning
   the whole string per token, plus a linear-scan dedup of the parsed items.
